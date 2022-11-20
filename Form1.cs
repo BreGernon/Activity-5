@@ -157,64 +157,78 @@ namespace Activity_5
             String mostVowels;
             String[] resultArray = new String[4];
 
+
             //Checks to see if the user selects okay to open a file
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 inputFile = new StreamReader(openFileDialog1.FileName);
                 fileName = openFileDialog1.FileName;
-                fileNameBox.Text = fileName;
-                String[] wordArray = System.IO.File.ReadAllLines(fileName);
 
-                
-                //changes all lines in file to lowercase and adds them to an array
-                while (!inputFile.EndOfStream)
+                if (fileName.Contains(".txt"))
                 {
-                    line = inputFile.ReadLine();
-                    lowerline = line.ToLower();
-                    wordArray[count] = lowerline;
-                    count++;
+
+                    fileNameBox.Text = fileName;
+                    String[] wordArray = System.IO.File.ReadAllLines(fileName);
+
+
+
+                    //changes all lines in file to lowercase and adds them to an array
+                    while (!inputFile.EndOfStream)
+                    {
+                        line = inputFile.ReadLine();
+                        lowerline = line.ToLower();
+                        wordArray[count] = lowerline;
+                        count++;
+
+                    }
+
+                    resultBox.Text += "All Words in File, Lowercase: \r\n";
+
+                    //adds all lowercase words to the textbox
+                    for (int i = 0; i < wordArray.Length; i++)
+                    {
+                        resultBox.Text += wordArray[i] +"\r\n";
+                    }
+
+                    inputFile.Close();
+
+                    resultBox.Text += "\n" + " ---------- \r\n";
+
+                    alphaFirst =  firstWord(wordArray);
+                    alphaLast = lastWord(wordArray);
+                    longestWord = mostLetters(wordArray);
+                    mostVowels = mostVowel(wordArray);
+                    resultArray[0] = alphaFirst;
+                    resultArray[1] = alphaLast;
+                    resultArray[2] = longestWord;
+                    resultArray[3] = mostVowels;
+
+                    //adds all results to the textbox
+                    for (int i = 0; i < 4; i++)
+                    {
+                        resultBox.Text += resultArray[i] + "\r\n";
+                    }
+
+
+
+
 
                 }
 
-                resultBox.Text += "All Words in File, Lowercase: \r\n";
-                
-                //adds all lowercase words to the textbox
-                for (int i = 0; i < wordArray.Length; i++)
+                else
                 {
-                    resultBox.Text += wordArray[i] +"\r\n";
+                    MessageBox.Show("File must be a .txt file");
                 }
-
-                inputFile.Close();
-
-                resultBox.Text += "\n" + " ---------- \r\n";
-
-               alphaFirst =  firstWord(wordArray);
-               alphaLast = lastWord(wordArray);
-               longestWord = mostLetters(wordArray);
-               mostVowels = mostVowel(wordArray);
-               resultArray[0] = alphaFirst;
-               resultArray[1] = alphaLast;
-               resultArray[2] = longestWord;
-               resultArray[3] = mostVowels;
-          
-                //adds all results to the textbox
-               for (int i = 0; i < 4; i++)
-                {
-                    resultBox.Text += resultArray[i] + "\r\n";      
-                }
-
-              
-              
-
-
             }
+
 
             else
                 MessageBox.Show("Operation canceled.");
 
 
 
-        }
+            }
+        
 
         //writes the results to a file
         private void saveButton_Click(object sender, EventArgs e)

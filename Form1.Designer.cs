@@ -62,6 +62,7 @@
             this.fileNameBox.Enabled = false;
             this.fileNameBox.Location = new System.Drawing.Point(376, 165);
             this.fileNameBox.Name = "fileNameBox";
+            this.fileNameBox.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.fileNameBox.Size = new System.Drawing.Size(694, 58);
             this.fileNameBox.TabIndex = 2;
             this.fileNameBox.Text = "Choose a file...";
@@ -89,7 +90,6 @@
             this.resultBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.resultBox.Size = new System.Drawing.Size(1167, 332);
             this.resultBox.TabIndex = 4;
-            //this.resultBox.TextChanged += new System.EventHandler(this.resultBox_TextChanged);
             // 
             // saveButton
             // 
